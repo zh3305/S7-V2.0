@@ -206,7 +206,7 @@ namespace Sharp7
           numBytes = Math.Ceiling(numBytes);
           if (numBytes / 2.0 - Math.Floor(numBytes / 2.0) > 0.0)
             ++numBytes;
-          propertyValue = (object) bytes.GetString((int) numBytes);
+          propertyValue = (object) bytes.GetStringGBK((int) numBytes);
           numBytes += 256.0;
           break;
         case "UInt16":
