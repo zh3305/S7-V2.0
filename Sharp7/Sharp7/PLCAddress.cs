@@ -75,294 +75,296 @@ namespace Sharp7
     {
       s7Type = type;
       string upper = address.Substring(0, 1).ToUpper();
-      if (!(upper == "D"))
+      switch (upper)
       {
-        if (!(upper == "I") && !(upper == "E"))
-        {
-          if (upper == "Q" || upper == "A" || upper == "O")
+          case "D":
           {
-            s7Area = S7Area.PA;
-            dbNumber = 0;
-            start = int.Parse(address.Substring(1).Split('.')[0]);
-            switch (s7Type)
-            {
-              case S7Type.Bit:
-                butter = new byte[1];
-                size = butter.Length;
-                start = int.Parse(address.Substring(1).Split('.')[1]) + start * 8;
-                s7WordLength = S7WordLength.Bit;
-                break;
-              case S7Type.Byte:
-                butter = new byte[1];
-                size = butter.Length;
-                s7WordLength = S7WordLength.Byte;
-                break;
-              case S7Type.Word:
-                butter = new byte[2];
-                size = 1;
-                s7WordLength = S7WordLength.Word;
-                break;
-              case S7Type.Int:
-                butter = new byte[2];
-                size = 1;
-                s7WordLength = S7WordLength.Int;
-                break;
-              case S7Type.DWord:
-                butter = new byte[4];
-                size = 1;
-                s7WordLength = S7WordLength.DWord;
-                break;
-              case S7Type.DInt:
-                butter = new byte[4];
-                size = 1;
-                s7WordLength = S7WordLength.DInt;
-                break;
-              case S7Type.Real:
-                butter = new byte[4];
-                size = 1;
-                s7WordLength = S7WordLength.Real;
-                break;
-              case S7Type.LReal:
-                butter = new byte[8];
-                size = 8;
-                s7WordLength = S7WordLength.Byte;
-                break;
-              case S7Type.LWord:
-                butter = new byte[8];
-                size = 8;
-                s7WordLength = S7WordLength.Byte;
-                break;
-              case S7Type.LInt:
-                butter = new byte[8];
-                size = 8;
-                s7WordLength = S7WordLength.Byte;
-                break;
-              case S7Type.DateTime:
-                butter = new byte[8];
-                size = 8;
-                s7WordLength = S7WordLength.Byte;
-                break;
-              default:
-                butter = new byte[0];
-                size = butter.Length;
-                s7WordLength = S7WordLength.Bit;
-                break;
-            }
-          }
-          else
-          {
-            s7Area = S7Area.MK;
-            dbNumber = 0;
-            start = int.Parse(address.Substring(1).Split('.')[0]);
-            switch (s7Type)
-            {
-              case S7Type.Bit:
-                butter = new byte[1];
-                size = butter.Length;
-                start = int.Parse(address.Substring(1).Split('.')[1]) + start * 8;
-                s7WordLength = S7WordLength.Bit;
-                break;
-              case S7Type.Byte:
-                butter = new byte[1];
-                size = butter.Length;
-                s7WordLength = S7WordLength.Byte;
-                break;
-              case S7Type.Word:
-                butter = new byte[2];
-                size = 1;
-                s7WordLength = S7WordLength.Word;
-                break;
-              case S7Type.Int:
-                butter = new byte[2];
-                size = 1;
-                s7WordLength = S7WordLength.Int;
-                break;
-              case S7Type.DWord:
-                butter = new byte[4];
-                size = 1;
-                s7WordLength = S7WordLength.DWord;
-                break;
-              case S7Type.DInt:
-                butter = new byte[4];
-                size = 1;
-                s7WordLength = S7WordLength.DInt;
-                break;
-              case S7Type.Real:
-                butter = new byte[4];
-                size = 1;
-                s7WordLength = S7WordLength.Real;
-                break;
-              case S7Type.LReal:
-                butter = new byte[8];
-                size = 8;
-                s7WordLength = S7WordLength.Byte;
-                break;
-              case S7Type.LWord:
-                butter = new byte[8];
-                size = 8;
-                s7WordLength = S7WordLength.Byte;
-                break;
-              case S7Type.LInt:
-                butter = new byte[8];
-                size = 8;
-                s7WordLength = S7WordLength.Byte;
-                break;
-              case S7Type.DateTime:
-                butter = new byte[8];
-                size = 8;
-                s7WordLength = S7WordLength.Byte;
-                break;
-              default:
-                butter = new byte[0];
-                size = butter.Length;
-                s7WordLength = S7WordLength.Bit;
-                break;
-            }
-          }
-        }
-        else
-        {
-          s7Area = S7Area.PE;
-          dbNumber = 0;
-          start = int.Parse(address.Substring(1).Split('.')[0]);
-          switch (s7Type)
-          {
-            case S7Type.Bit:
-              butter = new byte[1];
-              size = butter.Length;
-              start = int.Parse(address.Substring(1).Split('.')[1]) + start * 8;
-              s7WordLength = S7WordLength.Bit;
-              break;
-            case S7Type.Byte:
-              butter = new byte[1];
-              size = butter.Length;
-              s7WordLength = S7WordLength.Byte;
-              break;
-            case S7Type.Word:
-              butter = new byte[2];
-              size = 1;
-              s7WordLength = S7WordLength.Word;
-              break;
-            case S7Type.Int:
-              butter = new byte[2];
-              size = 1;
-              s7WordLength = S7WordLength.Int;
-              break;
-            case S7Type.DWord:
-              butter = new byte[4];
-              size = 1;
-              s7WordLength = S7WordLength.DWord;
-              break;
-            case S7Type.DInt:
-              butter = new byte[4];
-              size = 1;
-              s7WordLength = S7WordLength.DInt;
-              break;
-            case S7Type.Real:
-              butter = new byte[4];
-              size = 1;
-              s7WordLength = S7WordLength.Real;
-              break;
-            case S7Type.LReal:
-              butter = new byte[8];
-              size = 8;
-              s7WordLength = S7WordLength.Byte;
-              break;
-            case S7Type.LWord:
-              butter = new byte[8];
-              size = 8;
-              s7WordLength = S7WordLength.Byte;
-              break;
-            case S7Type.LInt:
-              butter = new byte[8];
-              size = 8;
-              s7WordLength = S7WordLength.Byte;
-              break;
-            case S7Type.DateTime:
-              butter = new byte[8];
-              size = 8;
-              s7WordLength = S7WordLength.Byte;
-              break;
-            default:
-              butter = new byte[0];
-              size = butter.Length;
-              s7WordLength = S7WordLength.Bit;
+              string[] strArray = address.Split('.');
+              if (strArray.Length >= 2)
+                  ;
+              s7Area = S7Area.DB;
+              dbNumber = int.Parse(strArray[0].Substring(1));
+              start = int.Parse(strArray[1]);
+              switch (s7Type)
+              {
+                  case S7Type.Bit:
+                      butter = new byte[1];
+                      size = butter.Length;
+                      start = int.Parse(strArray[2]) + start * 8;
+                      s7WordLength = S7WordLength.Bit;
+                      break;
+                  case S7Type.Byte:
+                      butter = new byte[1];
+                      size = butter.Length;
+                      s7WordLength = S7WordLength.Byte;
+                      break;
+                  case S7Type.Word:
+                      butter = new byte[2];
+                      size = 1;
+                      s7WordLength = S7WordLength.Word;
+                      break;
+                  case S7Type.Int:
+                      butter = new byte[2];
+                      size = 1;
+                      s7WordLength = S7WordLength.Int;
+                      break;
+                  case S7Type.DWord:
+                      butter = new byte[4];
+                      size = 1;
+                      s7WordLength = S7WordLength.DWord;
+                      break;
+                  case S7Type.DInt:
+                      butter = new byte[4];
+                      size = 1;
+                      s7WordLength = S7WordLength.DInt;
+                      break;
+                  case S7Type.Real:
+                      butter = new byte[4];
+                      size = 1;
+                      s7WordLength = S7WordLength.Real;
+                      break;
+                  case S7Type.LReal:
+                      butter = new byte[8];
+                      size = 8;
+                      s7WordLength = S7WordLength.Byte;
+                      break;
+                  case S7Type.LWord:
+                      butter = new byte[8];
+                      size = 8;
+                      s7WordLength = S7WordLength.Byte;
+                      break;
+                  case S7Type.LInt:
+                      butter = new byte[8];
+                      size = 8;
+                      s7WordLength = S7WordLength.Byte;
+                      break;
+                  case S7Type.DateTime:
+                      butter = new byte[8];
+                      size = 8;
+                      s7WordLength = S7WordLength.Byte;
+                      break;
+                  default:
+                      butter = new byte[0];
+                      size = butter.Length;
+                      s7WordLength = S7WordLength.Bit;
+                      break;
+              }
+
               break;
           }
-        }
-      }
-      else
-      {
-        string[] strArray = address.Split('.');
-        if (strArray.Length >= 2)
-          ;
-        s7Area = S7Area.DB;
-        dbNumber = int.Parse(strArray[0].Substring(1));
-        start = int.Parse(strArray[1]);
-        switch (s7Type)
-        {
-          case S7Type.Bit:
-            butter = new byte[1];
-            size = butter.Length;
-            start = int.Parse(strArray[2]) + start * 8;
-            s7WordLength = S7WordLength.Bit;
-            break;
-          case S7Type.Byte:
-            butter = new byte[1];
-            size = butter.Length;
-            s7WordLength = S7WordLength.Byte;
-            break;
-          case S7Type.Word:
-            butter = new byte[2];
-            size = 1;
-            s7WordLength = S7WordLength.Word;
-            break;
-          case S7Type.Int:
-            butter = new byte[2];
-            size = 1;
-            s7WordLength = S7WordLength.Int;
-            break;
-          case S7Type.DWord:
-            butter = new byte[4];
-            size = 1;
-            s7WordLength = S7WordLength.DWord;
-            break;
-          case S7Type.DInt:
-            butter = new byte[4];
-            size = 1;
-            s7WordLength = S7WordLength.DInt;
-            break;
-          case S7Type.Real:
-            butter = new byte[4];
-            size = 1;
-            s7WordLength = S7WordLength.Real;
-            break;
-          case S7Type.LReal:
-            butter = new byte[8];
-            size = 8;
-            s7WordLength = S7WordLength.Byte;
-            break;
-          case S7Type.LWord:
-            butter = new byte[8];
-            size = 8;
-            s7WordLength = S7WordLength.Byte;
-            break;
-          case S7Type.LInt:
-            butter = new byte[8];
-            size = 8;
-            s7WordLength = S7WordLength.Byte;
-            break;
-          case S7Type.DateTime:
-            butter = new byte[8];
-            size = 8;
-            s7WordLength = S7WordLength.Byte;
-            break;
+          case "I":
+          case "E":
+              s7Area = S7Area.PE;
+              dbNumber = 0;
+              start = int.Parse(address.Substring(1).Split('.')[0]);
+              switch (s7Type)
+              {
+                  case S7Type.Bit:
+                      butter = new byte[1];
+                      size = butter.Length;
+                      start = int.Parse(address.Substring(1).Split('.')[1]) + start * 8;
+                      s7WordLength = S7WordLength.Bit;
+                      break;
+                  case S7Type.Byte:
+                      butter = new byte[1];
+                      size = butter.Length;
+                      s7WordLength = S7WordLength.Byte;
+                      break;
+                  case S7Type.Word:
+                      butter = new byte[2];
+                      size = 1;
+                      s7WordLength = S7WordLength.Word;
+                      break;
+                  case S7Type.Int:
+                      butter = new byte[2];
+                      size = 1;
+                      s7WordLength = S7WordLength.Int;
+                      break;
+                  case S7Type.DWord:
+                      butter = new byte[4];
+                      size = 1;
+                      s7WordLength = S7WordLength.DWord;
+                      break;
+                  case S7Type.DInt:
+                      butter = new byte[4];
+                      size = 1;
+                      s7WordLength = S7WordLength.DInt;
+                      break;
+                  case S7Type.Real:
+                      butter = new byte[4];
+                      size = 1;
+                      s7WordLength = S7WordLength.Real;
+                      break;
+                  case S7Type.LReal:
+                      butter = new byte[8];
+                      size = 8;
+                      s7WordLength = S7WordLength.Byte;
+                      break;
+                  case S7Type.LWord:
+                      butter = new byte[8];
+                      size = 8;
+                      s7WordLength = S7WordLength.Byte;
+                      break;
+                  case S7Type.LInt:
+                      butter = new byte[8];
+                      size = 8;
+                      s7WordLength = S7WordLength.Byte;
+                      break;
+                  case S7Type.DateTime:
+                      butter = new byte[8];
+                      size = 8;
+                      s7WordLength = S7WordLength.Byte;
+                      break;
+                  default:
+                      butter = new byte[0];
+                      size = butter.Length;
+                      s7WordLength = S7WordLength.Bit;
+                      break;
+              }
+
+              break;
+          case "Q":
+          case "A":
+          case "O":
+              s7Area = S7Area.PA;
+              dbNumber = 0;
+              start = int.Parse(address.Substring(1).Split('.')[0]);
+              switch (s7Type)
+              {
+                  case S7Type.Bit:
+                      butter = new byte[1];
+                      size = butter.Length;
+                      start = int.Parse(address.Substring(1).Split('.')[1]) + start * 8;
+                      s7WordLength = S7WordLength.Bit;
+                      break;
+                  case S7Type.Byte:
+                      butter = new byte[1];
+                      size = butter.Length;
+                      s7WordLength = S7WordLength.Byte;
+                      break;
+                  case S7Type.Word:
+                      butter = new byte[2];
+                      size = 1;
+                      s7WordLength = S7WordLength.Word;
+                      break;
+                  case S7Type.Int:
+                      butter = new byte[2];
+                      size = 1;
+                      s7WordLength = S7WordLength.Int;
+                      break;
+                  case S7Type.DWord:
+                      butter = new byte[4];
+                      size = 1;
+                      s7WordLength = S7WordLength.DWord;
+                      break;
+                  case S7Type.DInt:
+                      butter = new byte[4];
+                      size = 1;
+                      s7WordLength = S7WordLength.DInt;
+                      break;
+                  case S7Type.Real:
+                      butter = new byte[4];
+                      size = 1;
+                      s7WordLength = S7WordLength.Real;
+                      break;
+                  case S7Type.LReal:
+                      butter = new byte[8];
+                      size = 8;
+                      s7WordLength = S7WordLength.Byte;
+                      break;
+                  case S7Type.LWord:
+                      butter = new byte[8];
+                      size = 8;
+                      s7WordLength = S7WordLength.Byte;
+                      break;
+                  case S7Type.LInt:
+                      butter = new byte[8];
+                      size = 8;
+                      s7WordLength = S7WordLength.Byte;
+                      break;
+                  case S7Type.DateTime:
+                      butter = new byte[8];
+                      size = 8;
+                      s7WordLength = S7WordLength.Byte;
+                      break;
+                  default:
+                      butter = new byte[0];
+                      size = butter.Length;
+                      s7WordLength = S7WordLength.Bit;
+                      break;
+              }
+
+              break;
           default:
-            butter = new byte[0];
-            size = butter.Length;
-            s7WordLength = S7WordLength.Bit;
-            break;
-        }
+              s7Area = S7Area.MK;
+              dbNumber = 0;
+              start = int.Parse(address.Substring(1).Split('.')[0]);
+              switch (s7Type)
+              {
+                  case S7Type.Bit:
+                      butter = new byte[1];
+                      size = butter.Length;
+                      start = int.Parse(address.Substring(1).Split('.')[1]) + start * 8;
+                      s7WordLength = S7WordLength.Bit;
+                      break;
+                  case S7Type.Byte:
+                      butter = new byte[1];
+                      size = butter.Length;
+                      s7WordLength = S7WordLength.Byte;
+                      break;
+                  case S7Type.Word:
+                      butter = new byte[2];
+                      size = 1;
+                      s7WordLength = S7WordLength.Word;
+                      break;
+                  case S7Type.Int:
+                      butter = new byte[2];
+                      size = 1;
+                      s7WordLength = S7WordLength.Int;
+                      break;
+                  case S7Type.DWord:
+                      butter = new byte[4];
+                      size = 1;
+                      s7WordLength = S7WordLength.DWord;
+                      break;
+                  case S7Type.DInt:
+                      butter = new byte[4];
+                      size = 1;
+                      s7WordLength = S7WordLength.DInt;
+                      break;
+                  case S7Type.Real:
+                      butter = new byte[4];
+                      size = 1;
+                      s7WordLength = S7WordLength.Real;
+                      break;
+                  case S7Type.LReal:
+                      butter = new byte[8];
+                      size = 8;
+                      s7WordLength = S7WordLength.Byte;
+                      break;
+                  case S7Type.LWord:
+                      butter = new byte[8];
+                      size = 8;
+                      s7WordLength = S7WordLength.Byte;
+                      break;
+                  case S7Type.LInt:
+                      butter = new byte[8];
+                      size = 8;
+                      s7WordLength = S7WordLength.Byte;
+                      break;
+                  case S7Type.DateTime:
+                      butter = new byte[8];
+                      size = 8;
+                      s7WordLength = S7WordLength.Byte;
+                      break;
+                  default:
+                      butter = new byte[0];
+                      size = butter.Length;
+                      s7WordLength = S7WordLength.Bit;
+                      break;
+              }
+
+              break;
       }
     }
 
